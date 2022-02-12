@@ -1,13 +1,20 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 const Middlebar = () => {
   return (
     <ul className="middle-bar-container container">
 
-      <li className="middle-bar-logo"><img src="images/logo/logo.png" className="middle-bar-img" alt="" /></li>
 
+      <div className="dropdown"> 
       <li className="middle-bar-menu"><i className="fa fa-bars fa-2x fa-fw" aria-hidden="true"></i></li>
-
+      <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+      </div>
+     
       <li className="middle-bar-input">
           <div className="input-group mb-3">
             <div className="input-group-prepend">
