@@ -488,6 +488,10 @@ body {
     flex-direction: column;
 }
 
+.product-detail-caption{
+    width: 50%;
+}
+
 .detail-swiper-gallery{
     width: 80%;
     height:400px
@@ -562,6 +566,15 @@ body {
 }
 .product-detail-price h3,h6{
     margin-right: 15px;
+}
+.product-detail-price h3{
+    color: #ff3300;
+}
+.product-detail-discount{
+    color: #ff3300;
+}
+.product-detail-linedPrice{
+    color: #6d6d6d;
 }
 .qty {
     border: 1px solid rgb(151, 145, 145);
