@@ -4,8 +4,8 @@ const Topbar = () => {
   return (
     <div>
 
-      <ul class="nav navbar-light bg-light justify-content-end top-bar-container">
-
+      <ul class="nav  justify-content-end top-bar-container">
+        
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Shop</a>
         </li>

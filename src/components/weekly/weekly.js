@@ -69,7 +69,7 @@ export default function Weekly() {
   console.log("weeksss => " , weekly);
   return (
     <>
-      <div className="container mb-5 mt-5">
+      <div className="container mb-3 mt-5 weekly-container">
         <h4>Weekly deals</h4>
         <hr />
       </div>
@@ -88,7 +88,7 @@ export default function Weekly() {
             <Link to={"/detailProduct/"+week.id}>
               <div className="weekly-carousel-item">
             <img src={`http://localhost:1337${week.img.url}`} />
-
+            <hr/>
             <div className="weekly-carousel-title-container">
               <h6 className="weekly-carousel-title">{week.title}</h6>
             </div>

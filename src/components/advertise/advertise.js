@@ -40,7 +40,7 @@ const Advertise = () =>{
 
             <ul className="advertise-ul">
                 <li>
-                <i class="fa fa-comment-o fa-2x mil advertise-icon" aria-hidden="true"></i>
+                <i class="fa fa-comment-o fa-2x  advertise-icon" aria-hidden="true"></i>
                 </li>
                 <li className="advertise-li">
                 <h5>2 years</h5>

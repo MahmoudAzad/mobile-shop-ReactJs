@@ -49,51 +49,161 @@ table {
 
 .top-bar-container{
     padding: 5px 150px 5px 0;
+    background-color:rgb(241, 241, 241) ;
+    color: rgb(92, 92, 92);
+    
 }
 
 .middle-bar-container{
+    width: 100%;
+    height: 80px;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     align-items: center;
-    margin-top: 10px;
     flex-wrap: nowrap;
 }
 
 .middle-bar-logo{
-    /* flex-grow: 1; */
+    width: 80px;
+    height: 80px;
 }
 
 .middle-bar-menu{
-    /* flex-grow: 1; */
     margin-right: 50px;
 
 
 }
 .middle-bar-input{
-    flex-grow: 1;
     margin-top: 15px;
-    /* padding:20px */
+    display: flex;
 }
-
+.midle-bar-input{
+    width: 500px;
+    border:none;
+    border: 1px solid rgb(201, 201, 201);
+}
+.middle-bar-dropdown-btn{
+    background-color:white;
+    border: none;
+    border: 1px solid rgb(201, 201, 201);
+    width:70px;
+    border-radius: 5px 0 0 5px
+}
 .middle-bar-icons{
-    /* flex-grow: 1; */
-    margin-left: 30px;
-
+    display:flex;
+    flex-direction: row;
+    align-items: center
 }
+.middle-bar-icons i{
+    margin-left: 10px;
+}
+.fa-stack[data-count]:after{
+    position:absolute;
+    right:14%;
+    bottom:10%;
+    content: attr(data-count);
+    font-size:30%;
+    padding:.6em;
+    border-radius:999px;
+    line-height:.75em;
+    color: #fff;
+    background:#f27a24;
+    text-align:center;
+    min-width:2em;
+    font-weight:bold;
+  }
+
+  .dropbtn {
+    cursor: pointer;
+  }
+
+  .middle-bar-shoppingIcon-dropdown{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    
+  }
+
+  .middle-bar-shoppingIcon-dropdown-content{
+    display: none;
+    position: absolute;
+    text-align: left;
+    background-color:white;
+    min-width: 300px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid rgb(219, 219, 219);
+    z-index: 1;
+    padding-top: 5px;
+    margin-top: 10px;
+
+  }
+  .middle-bar-shoppingIcon-dropdown-content p{
+      padding-left: 15px;
+      padding-top: 8px;
+      color: #6d6d6d;
+    transition: all 5s;
+
+  }
+
+  .middle-bar-shoppingIcon-dropdown:hover .middle-bar-shoppingIcon-dropdown-content {display: block;}
+
+
+
+
+
+  
+  .middle-bar-bars-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .middle-bar-bars-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color:white;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid rgb(219, 219, 219);
+    z-index: 1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .middle-bar-bars-dropdown-content a {
+    color: black;
+    padding: 5px 3px 5px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    transition: all 0.5s
+  }
+  
+  .middle-bar-bars-dropdown-content a:hover  {
+      color: rgb(241, 138, 53);
+      text-decoration: none;
+  }
+  .middle-bar-bars-dropdown:hover .middle-bar-bars-dropdown-content {display: block;}
+  
+  
 .middle-bar-img{
     width: 80%;
 }
 
 .middle-bar-input-search{
-    background-color: rgb(252, 118, 9);
+    background-color:#f27a24;
     color: white;
-    font-size: 20px;
+    font-weight: bold;
+    width:100px;
+    
 }
 .bottombar-container{
     display: flex;
     align-items: center;
-    background-color: rgb(252, 118, 9);
-    padding:15px;
+    background-color: #f27a24;
+    padding:12px;
     padding-left: 220px;
 }
 .bottombar-title{
@@ -149,6 +259,10 @@ table {
     height:60px
 }
 
+.weekly-container h4{
+    text-align: left;
+}
+
 .weekly-carousel-item{
     display: flex;
     flex-direction: column; 
@@ -172,6 +286,12 @@ table {
     text-align: center;
     /* margin-top:40px */
 }
+
+.weekly-carousel-title-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 /* .weekly-carousel-price-container{
     display: flex;
     flex-direction: row;
@@ -187,6 +307,7 @@ table {
 .weekly-carousel-price-container{
     text-align:center
 }
+
 
 .categories-container{
     display:flex;
@@ -621,17 +742,5 @@ body {
 }
 
 
-  .dropdown-content{
-      display :flex;
-      flex-direction: column;
-      align-items: flex-start;
-      border : 1px solid red;
-      background-color: black;
-      position: absolute;
-      display: none;
-  }
-  .dropdown:hover .dropdown-content{
-      display: block;
-  }
 
 
