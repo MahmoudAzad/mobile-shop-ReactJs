@@ -7,7 +7,7 @@ const Middlebar = () => {
     <ul className="middle-bar-container container">
 
 
-      <img className="middle-bar-logo" src="images\logo\react-logo.jpg" />
+      <img className="middle-bar-logo" src="/images\logo\react-logo.jpg" />
 
 
       <div className="middle-bar-bars-dropdown">
@@ -36,7 +36,7 @@ const Middlebar = () => {
           </div>
           <input type="text" className="midle-bar-input p-2 pl-3 " aria-label="Text input with dropdown button" placeholder="i'm shopping for..." />
           <div className="input-group-append">
-            <button className="btn btn-outline middle-bar-input-search " type="button"><strong>Serach</strong> </button>
+            <button className=" middle-bar-input-search " type="button"><strong>Serach</strong> </button>
           </div>
         </div>
       </li>
@@ -45,7 +45,6 @@ const Middlebar = () => {
         <Link to="google">
           <span className="fa-stack fa-2x has-badge" data-count="0">
                <i className="fa fa-heart-o text-dark fa-fw" aria-hidden="true"></i>
-               <i class="icofont-heart-alt"></i>
           </span>
         </Link>
 

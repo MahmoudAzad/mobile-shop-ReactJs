@@ -2,7 +2,7 @@ import React from 'react';
 import ReactLoading from 'react-loading';
 
 const Loading = () => (
-    <ReactLoading type={'bars'} color={"rgb(46, 124, 228)"} height={'10%'} width={'10%'} className="loading" />
+        <ReactLoading type={'spokes'} color={"#8b8a97"} height={'50px'} width={'50px'} className="loading" />
 );
 
 export default Loading;

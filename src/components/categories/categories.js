@@ -22,7 +22,7 @@ const Categories = () => {
     return ( 
         <div>
 
-                <h4 className="container mt-5 mb-3">Product categories</h4>
+                <h5 className="container mt-4 mb-1 text-left font-weight-bold">Product categories</h5>
         <div className="categories-container container">
                 
                 {categories.map((category)=>(

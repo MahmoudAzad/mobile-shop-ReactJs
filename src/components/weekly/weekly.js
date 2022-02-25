@@ -70,7 +70,7 @@ export default function Weekly() {
   return (
     <>
       <div className="container mb-3 mt-5 weekly-container">
-        <h4>Weekly deals</h4>
+        <h4 className="font-weight-bold">Weekly deals</h4>
         <hr />
       </div>
       <Swiper

@@ -13,14 +13,17 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 import { Fragment } from "react";
 import ReactTooltip from "react-tooltip";
 import { useParams } from "react-router";
-import { getWeeklyById } from "../../services/webServices";
+import { addComment, getComment, getWeeklyById } from "../../services/webServices";
+import { useEffect } from "react";
+import Loading from "../common/loading";
+import { Store } from "../redux/store/store";
+import CreateComment from "../comment/createComment";
+import CommentList from "../comment/commentList";
+// import CommentList from "../comment/commentList";
 
 
 export default function App() {
-  const { id } = useParams();
-  const data = getWeeklyById(id);
-  console.log("params =>", id);
-  console.log("data deeet =>>>", data);
+  // ................................................................................................................//
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
 
@@ -56,25 +59,75 @@ export default function App() {
 
     btnminus.addEventListener('click', qtyminus);
     btnplus.addEventListener('click', qtyplus);
+  
+  }
+  // .......................................................................................................................................
+  
+  const [detail , setDetail] = useState({});
+  const [comment , setComment] = useState({});
+  
 
+
+  const { id } = useParams();
+  console.log("id => " , id);
+
+  useEffect(() => {
+
+        const sendReq = async () => {
+          const getDetail =await getWeeklyById(id);
+          setDetail({detail:{getDetail}});
+      
+      
+          const comments = await getComment();
+          setComment({comments});
+        }
+
+        sendReq();
+    
+  },[])         
+  
+  
+  const submitComment = async (comment) =>{
+    console.log("comment 1 => " , comment);
+    const response = await addComment(comment,id) ;
+    if(response.status === 200) {
+      const getAllComments = await getComment(id);
+      const lastComment = getAllComments.data.slice(-1);
+      console.log("last comment => " , lastComment);
+      setComment({comments : {...getAllComments , ...lastComment}});
+    }
   }
 
 
-  return (
-    <Fragment >
+  console.log("comment (before if) => " , comment);
+  console.log("detail (before if) => " , detail);
+
+  
+  
+  if(!detail.detail || !comment.comments) {
+    return <Loading /> 
+  }
+  
+  const detailData = detail.detail.getDetail;
+  const comments = comment.comments.data;
+  
+
+  return(
+      <Fragment >
+
       <div className="product-detail-header container" >
 
         <div className="product-detail-title">
           <h5 className="container">
-            {data.title}
+            {detailData.title}
           </h5>
         </div>
 
         <div className="product-detail-icons">
-          <i class="fa fa-facebook mr-3 fa-lg detail-icon-facebook" aria-hidden="true"></i>
-          <i class="fa fa-twitter mr-3 fa-lg detail-icon-twiteer" aria-hidden="true"></i>
-          <i class="fa fa-instagram mr-3 fa-lg detail-icon-instagram" aria-hidden="true"></i>
-          <i class="fa fa-pinterest-p mr-3 fa-lg detail-icon-pinterest" aria-hidden="true"></i>
+          <i className="fa fa-facebook mr-3 fa-lg detail-icon-facebook" aria-hidden="true"></i>
+          <i className="fa fa-twitter mr-3 fa-lg detail-icon-twiteer" aria-hidden="true"></i>
+          <i className="fa fa-instagram mr-3 fa-lg detail-icon-instagram" aria-hidden="true"></i>
+          <i className="fa fa-pinterest-p mr-3 fa-lg detail-icon-pinterest" aria-hidden="true"></i>
 
         </div>
 
@@ -87,13 +140,11 @@ export default function App() {
               "--swiper-navigation-color": "#fff",
               "--swiper-pagination-color": "#fff",
             }}
-            // spaceBetween={10}
-            // navigation={true}
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper2 detail-swiper-gallery"
           >
-            {data.imgs.map((img) => (
+            {detailData.imgs.map((img) => (
               <SwiperSlide>
                 <img src={`http://localhost:1337${img.url}`} />
               </SwiperSlide>
@@ -111,7 +162,7 @@ export default function App() {
             className="mySwiper detail-swiper-thumbnail"
           >
 
-            {data.imgs.map((img) => (
+            {detailData.imgs.map((img) => (
               <SwiperSlide>
                 <img src={`http://localhost:1337${img.url}`} />
 
@@ -125,13 +176,13 @@ export default function App() {
         <div className="product-detail-caption ">
           <div className="product-detail-price" >
             <h3>
-              {data.price}
+              {detailData.price}
             </h3>
             <h6 className="product-detail-linedPrice">
-              <strike>{data.linedPrice}</strike>
+              <strike>{detailData.linedPrice}</strike>
             </h6>
             <h6 className="product-detail-discount">
-              {data.discount}
+              {detailData.discount}
             </h6>
           </div>
 
@@ -139,7 +190,7 @@ export default function App() {
           <h6>Status:In stock</h6>
           <hr />
           <p>
-            <div dangerouslySetInnerHTML={{ __html: data.description }}></div>
+            <div dangerouslySetInnerHTML={{ __html: detailData.description }}></div>
             {/* {data.description} */}
           </p>
           <hr />
@@ -148,10 +199,10 @@ export default function App() {
 
             <section>
               <form action="">
-                <div class="qty">
-                  <button class="qtyminus" aria-hidden="true"><i class="fa fa-minus fa-lg" aria-hidden="true"></i></button>
+                <div className="qty">
+                  <button className="qtyminus" aria-hidden="true"><i className="fa fa-minus fa-lg" aria-hidden="true"></i></button>
                   <input type="number" name="qty" id="qty" min="1" max="100" step="1" value="1" />
-                  <button class="qtyplus" aria-hidden="true"><i class="fa fa-plus fa-lg" aria-hidden="true"></i></button>
+                  <button className="qtyplus" aria-hidden="true"><i className="fa fa-plus fa-lg" aria-hidden="true"></i></button>
                 </div>
               </form>
             </section>
@@ -160,11 +211,11 @@ export default function App() {
 
 
             <div className="Quantity-icons">
-              <i class="fa fa-heart-o fa-lg fa-2x Quantity-icon-heart" data-tip data-for="detail-heart-tooltip" aria-hidden="true"></i>
+              <i className="fa fa-heart-o fa-lg fa-2x Quantity-icon-heart" data-tip data-for="detail-heart-tooltip" aria-hidden="true"></i>
               <ReactTooltip id="detail-heart-tooltip" place="top" effect="solid">
                 Add to wish list
               </ReactTooltip>
-              <i class="fa fa-bar-chart fa-2x Quantity-icon-chart" data-tip data-for="detail-chart-tooltip" aria-hidden="true"></i>
+              <i className="fa fa-bar-chart fa-2x Quantity-icon-chart" data-tip data-for="detail-chart-tooltip" aria-hidden="true"></i>
               <ReactTooltip id="detail-chart-tooltip" place="top" effect="solid">
                 Compare
               </ReactTooltip>
@@ -176,9 +227,18 @@ export default function App() {
         </div>
       </div>
 
+      <div className="container" >
+        <CreateComment onComment={submitComment} />
+      </div>
+      
+      <div className="row container">
+        <div className="col-10">
+          <CommentList comments={comments || []} />
+        </div>
+      </div>
 
+     
 
-    </Fragment>
-
-  );
+  </Fragment>
+  )
 }

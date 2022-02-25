@@ -197,7 +197,9 @@ table {
     color: white;
     font-weight: bold;
     width:100px;
-    
+    border: none;
+    cursor: pointer;
+    border-radius:0 5px 5px 0;
 }
 .bottombar-container{
     display: flex;
@@ -275,7 +277,8 @@ table {
 }
 .weekly-carousel-container :hover{
     border-color:  rgb(148, 148, 148);
-    transition:0.5s
+    transition:0.5s;
+    text-decoration:none;
 
 }
 
@@ -340,6 +343,9 @@ table {
     display:flex;
     flex-direction: row;
     justify-content: space-between; 
+}
+.footer-container ul li{
+    text-align:left;
 }
 
 .footer-container ul li h6{
@@ -744,3 +750,11 @@ body {
 
 
 
+.loading{
+    margin : 150px 0 150px 50%
+}
+
+
+Link :hover{
+    text-decoration: none
+}
