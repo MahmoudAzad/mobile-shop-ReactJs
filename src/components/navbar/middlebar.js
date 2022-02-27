@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ReactTooltip from 'react-tooltip';
+import { cartStore } from '../redux/store/cartStore';
 
 const Middlebar = () => {
+  const [badgeState, setBadgeState] = useState("")
+
+  useEffect(async () => {
+    cartStore.subscribe(() => {
+      setBadgeState(cartStore.getState().length);
+    })
+  }, [])
+
   return (
     <ul className="middle-bar-container container">
 
@@ -44,28 +52,28 @@ const Middlebar = () => {
       <li className="middle-bar-icons">
         <Link to="google">
           <span className="fa-stack fa-2x has-badge" data-count="0">
-               <i className="fa fa-heart-o text-dark fa-fw" aria-hidden="true"></i>
+            <i className="fa fa-heart-o text-dark fa-fw" aria-hidden="true"></i>
           </span>
         </Link>
 
 
-          <div className="middle-bar-shoppingIcon-dropdown">
-        <Link to="goo">
-          <span className="fa-stack fa-2x has-badge" data-count="0">
+        <div className="middle-bar-shoppingIcon-dropdown">
+          <Link to="goo">
+            <span className="fa-stack fa-2x has-badge" data-count={badgeState || 0} >
               <div className="dropbtn">
                 <i className="fa fa-shopping-bag text-dark fa-fw" aria-hidden="true"></i>
-              </div> 
-             
-          </span>
-        </Link>
-          <div className="middle-bar-shoppingIcon-dropdown-content">
-                <p>
-                  No products in the cart.
-                </p>
               </div>
-          </div>
 
-          
+            </span>
+          </Link>
+          <div className="middle-bar-shoppingIcon-dropdown-content">
+            <p>
+              No products in the cart.
+            </p>
+          </div>
+        </div>
+
+
         <Link to="goo">
           <span className="fa-stack has-badge mt-1" >
             <i className="fa fa-user-o text-dark  fa-2x fa-fw" aria-hidden="true"></i>
@@ -75,12 +83,6 @@ const Middlebar = () => {
 
       </li>
       <h6 className="font-weight-bold mt-3 ml-1">Log in <br /> Regiater</h6>
-
-
-
-
-
-
     </ul>
   )
 }

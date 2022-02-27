@@ -16,9 +16,13 @@ import { useParams } from "react-router";
 import { addComment, getComment, getWeeklyById } from "../../services/webServices";
 import { useEffect } from "react";
 import Loading from "../common/loading";
-import { Store } from "../redux/store/store";
+import {  Store } from "../redux/store/store";
 import CreateComment from "../comment/createComment";
 import CommentList from "../comment/commentList";
+import { CartAction } from "../redux/actions/cartAction";
+import { Link } from "react-router-dom";
+import Middlebar from "../navbar/middlebar";
+import { cartStore } from "../redux/store/cartStore";
 // import CommentList from "../comment/commentList";
 
 
@@ -80,6 +84,11 @@ export default function App() {
       
           const comments = await getComment();
           setComment({comments});
+          
+
+          cartStore.subscribe(()=>{
+            console.log("Sub Scribe =>" ,cartStore.getState().length);
+          })
         }
 
         sendReq();
@@ -101,6 +110,11 @@ export default function App() {
 
   console.log("comment (before if) => " , comment);
   console.log("detail (before if) => " , detail);
+
+  
+  const handleCartBtn =async () =>{
+     await cartStore.dispatch(CartAction(detail.detail.getDetail));
+  }
 
   
   
@@ -207,7 +221,7 @@ export default function App() {
               </form>
             </section>
 
-            <button className="Quantity-button">Add to cart</button>
+            <button onClick={handleCartBtn} className="btn Quantity-button">Add to cart</button>
 
 
             <div className="Quantity-icons">
@@ -231,8 +245,8 @@ export default function App() {
         <CreateComment onComment={submitComment} />
       </div>
       
-      <div className="row container">
-        <div className="col-10">
+      <div className=" container">
+        <div >
           <CommentList comments={comments || []} />
         </div>
       </div>
