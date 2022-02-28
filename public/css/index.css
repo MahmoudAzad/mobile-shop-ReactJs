@@ -758,3 +758,111 @@ body {
 Link :hover{
     text-decoration: none
 }
+
+.cart-title{
+    display : flex;
+    flex-direction:row;
+    background-color:#f3f2f2;
+    padding:15px;
+    border-top: 3px solid  #8fae1b;
+    margin-top: 70px;
+}
+.cart-title i{
+    color: #8fae1b  
+}
+
+.cart-title p{
+    font-size: 17px;
+    color: #5c5c5c;
+}
+
+.cart-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 35px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #e1e1e1;
+    padding-right: 20px;
+}
+
+.cart-content p{
+    font-weight: bold;
+    font-size: 14px;
+    margin-top:10px
+}
+
+.cart-detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-detail div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.back-btn , .cart-list-calculate-btn{
+    background-color:#f27a23 ;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 25px;
+    transition: all 0.5s;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+}
+
+.clear-btn{
+    border: 1px solid #131212;
+    background-color: white;
+    padding: 0 25px;
+    font-weight: bold;
+}
+
+.cart-list{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+.cart-list-coupon input , .cart-list-shipping input{
+    border: 1px solid #ccc;
+    width: 400px;
+}
+.cart-list-coupon button , .cart-list-shipping button{
+    border: 1px solid #ccc;
+    font-weight: bold;
+    padding:10px;
+    background-color: white;
+}
+
+.cart-list-calculate-border{
+        border: 1px solid #ccc;
+        margin-left: 15px;
+        background-color: #eeeded;
+        width: 400px;
+}
+
+.cart-list-calculate-border div{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around
+}
+
+
+
+
