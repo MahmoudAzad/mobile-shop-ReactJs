@@ -68,11 +68,15 @@ const Middlebar = () => {
 
             </span>
           </Link>
+
+
+          {badgeState.length===0 ? (
           <div className="middle-bar-shoppingIcon-dropdown-content">
-            <p>
-              No products in the cart.
-            </p>
+        <p>No products in the cart.</p>
           </div>
+      ) : (
+        null
+      )}  
         </div>
 
 

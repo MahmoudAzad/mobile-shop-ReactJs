@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Loading from "../common/loading";
+import { RemoveCartAction } from '../redux/actions/removeCartAction';
 import { cartStore } from '../redux/store/cartStore';
 import CartEmpty from './cartEmpty';
 
@@ -9,7 +10,16 @@ const CartDetail = () => {
     useEffect(async () => {
             const cartDetail = cartStore.getState() ;
             setCartState(cartDetail);
+
+            cartStore.subscribe(() => {
+                setCartState(cartStore.getState());
+              })
     }, [])
+
+    const removeHandler = (product) =>{
+        cartStore.dispatch(
+            RemoveCartAction(product));
+    }
 
 if (!cartState || !cartState.length) { return <CartEmpty/> }
 
@@ -44,7 +54,7 @@ return (
                     <p>{product.quantify}</p>
                     <div>
                     <p className='mr-5'>${product.quantify * product.price }</p>
-                    <i className="fa fa-times" aria-hidden="true"></i>
+                    <i onClick={() => removeHandler(product)} className="fa fa-times" aria-hidden="true"></i>
                     </div>
 
                 </div>
@@ -102,7 +112,6 @@ return (
                             <div className="mb-4">
                             <h5 className="font-weight-bold">Total</h5>
                             <h5 className="text-danger">12345</h5>
-                          
                             </div>
 
                         
