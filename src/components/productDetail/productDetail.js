@@ -190,7 +190,7 @@ export default function App() {
         <div className="product-detail-caption ">
           <div className="product-detail-price" >
             <h3>
-              {detailData.price}
+              ${detailData.price}
             </h3>
             <h6 className="product-detail-linedPrice">
               <strike>{detailData.linedPrice}</strike>

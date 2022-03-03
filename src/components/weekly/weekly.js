@@ -94,7 +94,7 @@ export default function Weekly() {
             </div>
 
             <div className="weekly-carousel-price-container">
-              <span className="mr-2 weekly-carousel-price">{week.price}</span>
+              <span className="mr-2 weekly-carousel-price">${week.price}</span>
               <strike className="weekly-carousel-strike">{week.linedPrice}</strike>
             </div>
               </div>

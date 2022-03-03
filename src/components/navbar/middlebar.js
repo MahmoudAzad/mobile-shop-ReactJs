@@ -7,9 +7,11 @@ const Middlebar = () => {
 
   useEffect(async () => {
     cartStore.subscribe(() => {
-      setBadgeState(cartStore.getState().length);
+      setBadgeState(cartStore.getState());
     })
   }, [])
+
+ 
 
   return (
     <ul className="middle-bar-container container">
@@ -58,8 +60,8 @@ const Middlebar = () => {
 
 
         <div className="middle-bar-shoppingIcon-dropdown">
-          <Link to="goo">
-            <span className="fa-stack fa-2x has-badge" data-count={badgeState || 0} >
+          <Link to="cartDetail" >
+            <span className="fa-stack fa-2x has-badge" data-count={badgeState.length || 0} >
               <div className="dropbtn">
                 <i className="fa fa-shopping-bag text-dark fa-fw" aria-hidden="true"></i>
               </div>

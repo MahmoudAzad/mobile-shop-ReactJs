@@ -1,7 +1,20 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import Loading from "../common/loading";
+import { cartStore } from '../redux/store/cartStore';
+import CartEmpty from './cartEmpty';
 
 const CartDetail = () => {
-    return ( 
+    const [cartState, setCartState] = useState("")
+
+    useEffect(async () => {
+            const cartDetail = cartStore.getState() ;
+            setCartState(cartDetail);
+    }, [])
+
+if (!cartState || !cartState.length) { return <CartEmpty/> }
+
+console.log("milad =>" , cartState);
+return ( 
         <Fragment>
             <div className="cart-detail-container container">
                   <h1 className="mt-5 font-weight-bold text-center">Cart</h1>
@@ -18,21 +31,24 @@ const CartDetail = () => {
                     <p >TOTAL</p>
                 </div>
 
+
+
+                    
+                    {cartState.map((product)=>(
                 <div className='cart-detail'>
                     <div className='w-50'>
-                        <img className='mt-3' width='100px' src='/images\Weekly\xiaomi_poco_f3_plata_01_l_silver.jpeg' />
-                        <p>Xiaomi 11 Lite 5G NE Dual Sim 8GB RAM 256GB Blue</p>
+                        <img className='mt-3' width='100px' src={`http://localhost:1337${product.img.url}`} />
+                        <p className='ml-5'> {product.title}</p>
                     </div>
-                    <p>€359.00</p>
-                    <p>3</p>
+                    <p>${product.price}</p>
+                    <p>{product.quantify}</p>
                     <div>
-                    <p className='mr-5'>€359.00	</p>
+                    <p className='mr-5'>${product.quantify * product.price }</p>
                     <i className="fa fa-times" aria-hidden="true"></i>
-
                     </div>
 
                 </div>
-
+                        ))}
                 <hr/>
 
                 <div className='cart-btns'>
@@ -83,11 +99,14 @@ const CartDetail = () => {
                         <hr />
 
                         <p>Shipping <br/>Enter your address to view shipping options.</p> <hr/>
-                        
-                        <div className="mb-4">
+                            <div className="mb-4">
                             <h5 className="font-weight-bold">Total</h5>
-                            <h5 className="text-danger">€1,208.00</h5>
-                        </div>
+                            <h5 className="text-danger">12345</h5>
+                          
+                            </div>
+
+                        
+                      
 
                      </div>
 
